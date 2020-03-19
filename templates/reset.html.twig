@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Восстановление пароля{% endblock %}
+
+{% block page_content %}
+
+<h1>Восстановление пароля</h1>
+<form>
+<label for="inputEmail">Почта</label>*
+<input type="email" name="email" id="inputEmail" class="form-control" required autofocus>
+
+<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+<br><button class="btn">Воccтановить</button>
+</form>
+{% endblock %}

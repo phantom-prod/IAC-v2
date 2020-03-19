@@ -1,0 +1,65 @@
+#book{
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    padding-left: 20px;
+    background-color: whitesmoke; 
+}
+
+#book-img{
+    display: inline-block;
+    padding-right: 25px;
+}
+
+#book-inf{
+    vertical-align: middle;
+    display: inline-block;
+    width: 70%;
+    height: 100%;
+}
+
+.main-header{
+    position: fixed;
+    width: 100%;
+    
+}
+.main-sidebar{
+    position: fixed;
+}
+
+.nav{
+    color:white;
+}
+
+.navbar-custom-menu{
+    padding-top: 15px; 
+    padding-right: 5px;
+}
+
+.links{
+    font-size: medium;
+    font-family: 'Nunito', sans-serif;
+    color: white;
+    text-decoration: none;
+}
+
+.links:hover{
+    font-size: medium;
+    font-family: 'Nunito', sans-serif;
+    color: white;
+    text-decoration: none;
+}
+
+
+.genrelist{
+    font-family: 'Nunito', sans-serif;
+    font-size: large;
+    list-style-type: none;
+}
+
+.form-control{
+    width: 60%;
+}
+
+.form-group{
+    width: 60%;
+}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% block page_content %}
+        {% for book in books %}
+        <div id="book">
+            <div id="book-img"><img src="{{book.img}}" width="200" height="300"><br></div>
+            <div id="book-inf">
+                <div id="book-name">{{book.name}}<br></div>
+                
+                {% for author in book.author %}
+                    <span id="author-name">{{author.name}}</span>
+                {% endfor %}
+                
+                {% for genre in book.genre %}
+                    <div id="genre-name">Жанр: {{genre.name}}</div>
+                {% endfor %}
+                <div id="book-disc">{{book.discription}}</div>
+            </div>
+        </div><br><br>
+        {% endfor %}
+    {% endblock %}
+{% endblock %}

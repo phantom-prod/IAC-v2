@@ -1,12 +1,67 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
-</html>
+{% extends '@AdminLTE/layout/default-layout.html.twig' %}
+{% block body %}
+{% block navbar_user %}
+    {%if app.user %}
+        <a class="links" href="{{ path('app_logout') }}"><strong>Выйти</strong></a>
+    {%else%}
+        <a class="links" href="{{ path('app_login') }}"><strong>Авторизация</strong></a> /
+        <a class="links" href="{{ path('app_register') }}"><strong>Регистрация</strong></a>
+    {%endif%}
+{% endblock %}
+{% block logo %}
+    {% block logo_large %} Library {% endblock %}
+    Library
+{% endblock %}
+{% block page_title %}{% endblock %}
+{% block page_subtitle %}{% endblock %}
+
+{% block sidebar_search %}
+<form action="/search" method="get" class="sidebar-form">
+    <div class="input-group">
+        <input type="text" name="search" class="form-control" placeholder="{{ 'Поиск' }}"/>
+        <span class="input-group-btn">
+            <button type='submit' id='search-btn' class="btn btn-flat">
+            <i class="fas fa-search"></i></button>
+        </span>
+    </div>
+</form>
+{% endblock %}
+{% block sidebar_user %}
+    <br><ul id="genres_list" class="genrelist">
+            <p><strong>Категории</strong></p>
+            <li class="active">
+                <a class="genrelink" href="/">Все</a>
+            </li> 
+        </ul>
+        <script>
+            window.onload = function() 
+            {
+                $.getJSON('/genres', function(response) 
+                {
+                    console.log(response);
+                    var genres_list = [];
+                    for(item of response)
+                    {
+                        let genre_html = '<li class="active"><a class="genrelink" href=":url">:name</a></li>';
+                        let url = '/genres/' + item.id;
+                        genre_html = genre_html.replace(":url", url).replace(":name", item.name);
+
+                        genres_list.push(genre_html);
+                    }
+                    $('#genres_list').append(genres_list);
+                });
+            };
+    </script>
+{% endblock %}
+{% block stylesheets %}
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('bundles/adminlte/adminlte.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+{% endblock %}
+{% block page_content %}{% endblock %}
+{% block footer %}{% endblock %}
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('bundles/adminlte/adminlte.js') }}"></script>
+
+{% endblock %}
